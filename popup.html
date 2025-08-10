@@ -11,33 +11,42 @@
 
       <div class="setting">
         <label for="theme">Theme</label>
-        <select id="theme">
-          <option value="default">Default</option>
-          <option value="dark">Dark</option>
-          <option value="solarized">Solarized</option>
-          <option value="pastel">Pastel</option>
-          <option value="highcontrast">High Contrast</option>
-        </select>
+        <div class="select-container">
+          <select id="theme">
+            <option value="default">🎨 Default</option>
+            <option value="dark">🌙 Dark</option>
+            <option value="solarized">☀️ Solarized</option>
+            <option value="pastel">🎨 Pastel</option>
+            <option value="highcontrast">⚡ High Contrast</option>
+          </select>
+          <div class="feedback" id="theme-feedback"></div>
+        </div>
       </div>
 
       <div class="setting">
         <label for="font">Font</label>
-        <select id="font">
-          <option value="default">Default</option>
-          <option value="Inter">Inter</option>
-          <option value="Poppins">Poppins</option>
-          <option value="Merriweather">Merriweather</option>
-          <option value="Fira Code">Fira Code</option>
-        </select>
+        <div class="select-container">
+          <select id="font">
+            <option value="default">📝 Default</option>
+            <option value="Inter">🔤 Inter</option>
+            <option value="Poppins">✨ Poppins</option>
+            <option value="Merriweather">📖 Merriweather</option>
+            <option value="Fira Code">💻 Fira Code</option>
+          </select>
+          <div class="feedback" id="font-feedback"></div>
+        </div>
       </div>
 
       <div class="setting">
-        <label for="size">Text size</label>
-        <select id="size">
-          <option value="default">Default</option>
-          <option value="plus2">Default + 2px</option>
-          <option value="plus4">Default + 4px</option>
-        </select>
+        <label for="size">Text Size</label>
+        <div class="select-container">
+          <select id="size">
+            <option value="default">📏 Default</option>
+            <option value="plus2">📏 Default + 2px</option>
+            <option value="plus4">📏 Default + 4px</option>
+          </select>
+          <div class="feedback" id="size-feedback"></div>
+        </div>
       </div>
     </div>
 
