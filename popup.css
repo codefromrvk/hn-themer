@@ -1,50 +1,133 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: #1e1e1e;
   color: white;
+  min-width: 300px;
 }
 
 .popup-container {
-  width: 240px;
-  padding: 15px;
+  width: 280px;
+  padding: 20px;
   border-radius: 12px;
 }
 
 h1 {
-  font-size: 18px;
-  margin-bottom: 15px;
+  font-size: 20px;
+  margin: 0 0 20px 0;
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
   color: #ff6600; /* Matches Hacker News accent */
+  letter-spacing: -0.5px;
 }
 
 .setting {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.setting:last-child {
+  margin-bottom: 0;
 }
 
 label {
   display: block;
   font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+}
+
+.select-container {
+  position: relative;
 }
 
 select {
   width: 100%;
-  padding: 6px 8px;
+  padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid #555;
+  border: 1px solid #444;
   background-color: #2a2a2a;
   color: white;
   font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23999" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
 }
 
 select:focus {
   border-color: #ff6600;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.2);
+  background-color: #333;
 }
 
 select:hover {
   background-color: #333;
+  border-color: #555;
+}
+
+/* Theme preview indicators */
+.theme-preview {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: 1px solid #555;
+  vertical-align: middle;
+}
+
+.theme-preview.default { background-color: #f6f6ef; }
+.theme-preview.dark { background-color: #121212; }
+.theme-preview.solarized { background-color: #fdf6e3; }
+.theme-preview.pastel { background-color: #faf0e6; }
+.theme-preview.highcontrast { background-color: #000000; }
+
+/* Success feedback */
+.feedback {
+  position: absolute;
+  top: 50%;
+  right: 35px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 12px;
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+.feedback.show {
+  opacity: 1;
+}
+
+.feedback.success {
+  color: #4CAF50;
+}
+
+.feedback.error {
+  color: #f44336;
+}
+
+/* Loading state */
+.setting.loading select {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* Better spacing and visual hierarchy */
+.settings-group {
+  border-top: 1px solid #333;
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.settings-group:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
 }

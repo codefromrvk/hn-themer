@@ -16,10 +16,10 @@ const themeStyles = `
   body[data-hn-theme="dark"] .hnname a { color: #ffcc00 !important; }
   body[data-hn-theme="dark"] .pagetop a { color: #ffcc00 !important; }
   body[data-hn-theme="dark"] center table tbody { background-color: #1f1f1f !important; }
-  body[data-hn-theme="dark"] .commtext,.subtext span,a { color: #ecbc73ff !important; }
-  body[data-hn-theme="dark"] .comhead a { color: #ecbc73ff !important; }
-  body[data-hn-theme="dark"] .pagetop { color: #ecbc73ff !important; }
-  body[data-hn-theme="dark"] .subtext a { color: #ecbc73ff !important; }
+  body[data-hn-theme="dark"] .commtext, body[data-hn-theme="dark"] .subtext span, body[data-hn-theme="dark"] .subtext a { color: #ecbc73 !important; }
+  body[data-hn-theme="dark"] .comhead a { color: #ecbc73 !important; }
+  body[data-hn-theme="dark"] .pagetop { color: #ecbc73 !important; }
+  body[data-hn-theme="dark"] .subtext a { color: #ecbc73 !important; }
 
   /* Solarized */
   body[data-hn-theme="solarized"], body[data-hn-theme="solarized"] table {
@@ -30,7 +30,7 @@ const themeStyles = `
   body[data-hn-theme="solarized"] .hnname a { color: #b58900 !important; }
   body[data-hn-theme="solarized"] .pagetop a { color: #b58900 !important; }
   body[data-hn-theme="solarized"] center table[bgcolor="#ff6600"] { background-color: #eee8d5 !important; }
-  body[data-hn-theme="solarized"] .subtext span,a { color: #6CAFD8 !important; }
+  body[data-hn-theme="solarized"] .subtext span, body[data-hn-theme="solarized"] .subtext a { color: #6CAFD8 !important; }
 
   /* Pastel */
   body[data-hn-theme="pastel"], body[data-hn-theme="pastel"] table {
@@ -102,10 +102,21 @@ chrome.storage.sync.get(["theme", "font", "size"], ({ theme, font, size }) => {
 });
 
 /* ====== LISTEN FOR POPUP CHANGES ====== */
-chrome.runtime.onMessage.addListener((msg) => {
-  if (msg.theme !== undefined) applyTheme(msg.theme);
-  if (msg.font !== undefined) applyFont(msg.font);
-  if (msg.size !== undefined) applySize(msg.size);
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  try {
+    if (msg.theme !== undefined) applyTheme(msg.theme);
+    if (msg.font !== undefined) applyFont(msg.font);
+    if (msg.size !== undefined) applySize(msg.size);
+    
+    // Send success response
+    sendResponse({ success: true });
+  } catch (error) {
+    // Send error response
+    sendResponse({ success: false, error: error.message });
+  }
+  
+  // Return true to indicate we will respond asynchronously
+  return true;
 });
 
 /* ====== THEME HANDLERS ====== */
